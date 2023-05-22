@@ -19,10 +19,10 @@ ___
 
 ### <span id="2">2. </span><span style="color:purple">Запуск серввиса через Docker-compose</span>
 
-* </span><span style="color:orange">__Клонируем репозиторий репозиторий:__</span>
+* </span><span style="color:orange">__Клонируем репозиторий:__</span>
 
-```commandline
-ссылка для скачки
+```bash
+git clone https://github.com/VIVERA83/victorina_api.git
 ```
 
 * </span><span style="color:orange">__Создаем файл .env (с переменными окружения) на основе примера [.env_example](.env_example):__</span>
