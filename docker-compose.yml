@@ -10,6 +10,10 @@ services:
       - ${PORT}:${PORT}
     env_file:
       - .env
+    command: bash -c "
+      alembic upgrade head
+      && uvicorn main:app --host ${HOST} --port ${PORT} --workers ${UVICORN_WORKERS}
+      "
     depends_on:
       - postgres
 
