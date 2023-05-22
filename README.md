@@ -25,6 +25,13 @@ ___
 git clone https://github.com/VIVERA83/victorina_api.git
 ```
 
+
+* </span><span style="color:orange">__Переходи в папку с проектом:__</span>
+
+```bash
+cd victorina_api
+```
+
 * </span><span style="color:orange">__Создаем файл .env (с переменными окружения) на основе примера [.env_example](.env_example):__</span>
 
 ```bash

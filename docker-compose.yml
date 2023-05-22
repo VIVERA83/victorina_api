@@ -1,0 +1,27 @@
+version: "3"
+services:
+
+  victorina:
+    container_name: victorina
+    build:
+      context: .
+      dockerfile: dockerfile_victorina
+    ports:
+      - ${PORT}:${PORT}
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+
+
+  postgres:
+    container_name: postgres_victorina
+    image: postgres:13-alpine3.15
+    volumes:
+      - postgres_volume:/var/lib/postgresql/data/
+    env_file:
+      - .env
+
+volumes:
+  postgres_volume:
+
