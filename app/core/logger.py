@@ -1,3 +1,4 @@
+"""Логирование."""
 import logging
 import sys
 import typing
@@ -9,13 +10,20 @@ if typing.TYPE_CHECKING:
 
 
 def setup_logging(app: "Application") -> None:
+    """Настройка логирования в приложении.
+
+    В данном случаии есть вариант использовать сторонний логер loguru.
+    https://github.com/Delgan/loguru
+    """
     if app.settings.logging.guru:
         logger.configure(
             **{
                 "handlers": [
-                    {"sink": sys.stderr,
-                     "level": app.settings.logging.level,
-                     "backtrace": app.settings.logging.traceback},
+                    {
+                        "sink": sys.stderr,
+                        "level": app.settings.logging.level,
+                        "backtrace": app.settings.logging.traceback,
+                    },
                 ],
             }
         )

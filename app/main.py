@@ -1,3 +1,4 @@
+"""Модуль запуска приложения."""
 import uvicorn
 from core.app import setup_app
 

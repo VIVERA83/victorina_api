@@ -1,4 +1,4 @@
-"""Базовый класс, отвечающий за связь логики с базовым приложением"""
+"""Базовый класс, отвечающий за связь логики с базовым приложением."""
 import typing
 
 if typing.TYPE_CHECKING:
@@ -7,6 +7,7 @@ if typing.TYPE_CHECKING:
 
 class BaseAccessor:
     def __init__(self, app: "Application", *args: list, **kwargs: dict):
+        """Инициализация, потключаемого сервиса в основном приложении Fast-Api."""
         self.app = app
         self.logger = app.logger
         app.on_event("startup")(self.connect)
@@ -24,5 +25,5 @@ class BaseAccessor:
         pass
 
     async def disconnect(self, *_: "Application"):
-        """ "Настройка корректного закрытия всех соединений"""
+        """Настройка корректного закрытия всех соединений"""
         pass

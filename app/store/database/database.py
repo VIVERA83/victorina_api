@@ -1,3 +1,4 @@
+"""Database..."""
 from typing import Optional, Type
 
 from base.base_accessor import BaseAccessor
@@ -8,6 +9,10 @@ from sqlalchemy.orm import DeclarativeBase, Mapped
 
 
 class Base(DeclarativeBase):
+    """Настройка мета данных.
+
+    В частности указываем схему для хранения таблиц."""
+
     metadata = MetaData(schema=Settings().postgres.db_schema)
     id: Optional[Mapped] = None
 
@@ -18,11 +23,14 @@ class Base(DeclarativeBase):
 
 
 class Database(BaseAccessor):
+    """Описание правил потключения PostgresQL к приложению Fast-Api"""
+
     _engine: Optional[AsyncEngine] = None
     _db: Optional[Type[DeclarativeBase]] = None
     session: Optional[AsyncSession] = None
 
     async def connect(self, *_: list, **__: dict):
+        """Подключение к базе данных."""
         self._db = Base
         self._engine = create_async_engine(
             self.app.settings.postgres.dsn, echo=False, future=True
@@ -31,6 +39,7 @@ class Database(BaseAccessor):
         self.logger.info("Connected to Postgres")
 
     async def disconnect(self, *_: list, **__: dict):
+        """Закрытие потключения."""
         if self._engine:
             await self._engine.dispose()
         self.logger.info("Disconnected from Postgres")

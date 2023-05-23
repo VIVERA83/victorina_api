@@ -63,9 +63,7 @@ async def run_async_migrations() -> None:
         await connection.execute(
             text("CREATE SCHEMA IF NOT EXISTS %s" % current_tenant)
         )
-        await connection.execute(
-            text('set search_path to "%s"' % current_tenant)
-        )
+        await connection.execute(text('set search_path to "%s"' % current_tenant))
         await connection.commit()
         await connection.run_sync(do_run_migrations)
     await connectable.dispose()

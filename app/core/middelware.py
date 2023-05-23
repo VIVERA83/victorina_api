@@ -1,3 +1,4 @@
+"""Middleware приложения."""
 import traceback
 from typing import TYPE_CHECKING
 
@@ -26,9 +27,9 @@ class ErrorHandlingMiddleware(BaseHTTPMiddleware):
                     "message": "The server is temporarily unavailable try contacting later",
                 },
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-
             )
 
 
 def setup_middleware(app: "Application"):
+    """Настройка потключаемый Middleware."""
     app.add_middleware(ErrorHandlingMiddleware)

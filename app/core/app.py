@@ -1,8 +1,9 @@
+"""Место окончательной сборки приложения."""
 from core.components import Application
-from core.routes import setup_routes
 from core.exceptions import setup_exception
 from core.logger import setup_logging
 from core.middelware import setup_middleware
+from core.routes import setup_routes
 from core.settings import Settings
 from store import setup_store
 
@@ -17,5 +18,7 @@ def setup_app() -> "Application":
     setup_exception(app)
     setup_routes(app)
     setup_store(app)
-    app.logger.info(f"Swagger link: http://{app.settings.host}:{app.settings.port}{app.docs_url}")  # noqa
+    app.logger.info(
+        f"Swagger link: http://{app.settings.host}:{app.settings.port}{app.docs_url}"
+    )  # noqa
     return app

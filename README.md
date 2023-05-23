@@ -25,14 +25,14 @@ ___
 git clone https://github.com/VIVERA83/victorina_api.git
 ```
 
-
 * </span><span style="color:orange">__Переходи в папку с проектом:__</span>
 
 ```bash
 cd victorina_api
 ```
 
-* </span><span style="color:orange">__Создаем файл .env (с переменными окружения) на основе примера [.env_example](.env_example):__</span>
+* </span><span style="color:orange">__Создаем файл .env (с переменными окружения) на основе
+  примера [.env_example](.env_example):__</span>
 
 ```bash
 echo "# Настройка приложения
@@ -58,15 +58,23 @@ POSTGRES_PASSWORD=pass
 # Настройка Uvicorn
 UVICORN_WORKERS=3" >>.env
 ```
-### <span id="2">2. </span><span style="color:purple">Установка</span>
 
-* </span><span style="color:orange">__Поднимае Docker_compose контейнер:__</span>
+* </span><span style="color:orange">__Поднимаем Docker_compose контейнер:__</span>
 
 ```bash
 docker-compose up --build
 ```
 
+### <span id="3">3. </span><span style="color:purple">Примеры обращения к сервису</span>
+* </span><span style="color:orange">__Документация:__</span>
+ Поосле запуска сервиса, стновится доступна OpenAPi документация. Посмотреть ее можно по ссылке которая выводится в логах.
+ Если сервис запускается локоально из под операционная системы Windows, то попробуйте перейти по следущей ссылке:
+http://127.0.0.1:8000/docs
+* Пример запроса на получения одного вопроса http://127.0.0.1:8000/question?questions_num=1 
 
+
+  
+* 
 
 
 

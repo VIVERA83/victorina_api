@@ -1,3 +1,4 @@
+"""Обработчик HTTP исключений"""
 from typing import TYPE_CHECKING
 
 from fastapi import HTTPException, Request
@@ -9,6 +10,7 @@ if TYPE_CHECKING:
 
 
 async def http_exception_handler(request: Request, exc: HTTPException):
+    """Перехват исключения, с целью вернуть объект с информацией о документации по приложению."""
     return JSONResponse(
         content={
             "detail": f"{exc.detail}.",
@@ -20,4 +22,5 @@ async def http_exception_handler(request: Request, exc: HTTPException):
 
 
 def setup_exception(app: "Application"):
+    """Настройка потключаемый обработчиков исключений."""
     app.add_exception_handler(StarletteHTTPException, http_exception_handler)
