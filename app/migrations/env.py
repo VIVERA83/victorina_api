@@ -7,6 +7,7 @@ from sqlalchemy import pool, text
 from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import async_engine_from_config
 from store.database.database import Base
+from base.utils import before_execution
 
 config = context.config
 settings = Settings()
@@ -48,6 +49,7 @@ def do_run_migrations(connection: Connection) -> None:
         context.run_migrations()
 
 
+@before_execution(total_timeout=60)
 async def run_async_migrations() -> None:
     """In this scenario we need to create an Engine
     and associate a connection with the context.
