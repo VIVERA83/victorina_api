@@ -44,7 +44,7 @@ cd victorina_api
 ```
 
 * </span><span style="color:orange">__Создаем файл .env (с переменными окружения) на основе
-  примера [.env_example](.env_example):__</span>
+  примера [.env_example](.env_example)*:__</span>
 
 ```bash
 echo "# Настройка приложения
@@ -70,7 +70,11 @@ POSTGRES_PASSWORD=pass
 # Настройка Uvicorn
 UVICORN_WORKERS=3" >>.env
 ```
+В ОС windows можно скопировать фаил [.env_example](.env_example) в `.env` командой `copy`, это будет равнозначно команде выше
 
+```shell
+copy /Y ".env_example" ".env"
+```
 * </span><span style="color:orange">__Поднимаем Docker_compose контейнер:__</span>
 
 ```bash
@@ -87,4 +91,39 @@ docker-compose up --build
 * Пример запроса на получения одного вопроса http://127.0.0.1:8000/question?questions_num=1
 
 
+### <span id="4">4. </span><span style="color:purple">Для пользователей ОС Windows</span>
+
+* доспуп к документации осуществляется по ссылкам
+    * http://127.0.0.1:8000/docs
+    * http://127.0.0.1:8000/redoc
+    * http://localhost:8000/docs
+    * http://localhost:8000/redoc
+
+Для обращения к адресам 0.0.0.0 в браузере можно установить плагин
+[Redirector](https://chrome.google.com/webstore/detail/redirector/ocgpenflpmgnfapjedencafcfakcekcd/related)
+после установки в плагине создать новый redirect со следующими настройками:
+
+Description:
+
+```commandline
+0.0.0.0 to localhost
+```
+
+Include pattern:
+
+```commandline
+([a-zA-Z]*)://0.0.0.0:(\d*)/(.*)
+```
+
+Redirect to:
+
+```commandline
+$1://localhost:$2/$3
+```
+
+Pattern type: Regular Expression
+
+![redirect.jpg](doc%2Fredirect.jpg)
+
+После появится возможность открывать 0.0.0.0   
 
